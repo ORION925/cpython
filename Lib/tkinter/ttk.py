@@ -303,11 +303,12 @@ def _val_or_dict(tk, options, *args):
 
 def _convert_stringval(value):
     """Converts a value to, hopefully, a more appropriate Python object."""
-    value = str(value)
-    try:
-        value = int(value)
-    except (ValueError, TypeError):
-        pass
+    value = str(value)    
+    if not value.startswith('0'):
+        try: 
+            value = int(value)
+        except (ValueError, TypeError):
+            pass
 
     return value
 
